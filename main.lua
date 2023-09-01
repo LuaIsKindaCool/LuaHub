@@ -51,8 +51,8 @@ SheriffEspToggle:OnChanged(function(NewVal)
     if NewVal then
         if SearchFor("Gun") then
             SheriffHighlight = Instance.new("Highlight")
-            SheriffHighlight.FillColor = Color3.FromRGC(0,0,255)
-            SheriffHighlight.Parent = SearchFor("Gun")
+            SheriffHighlight.FillColor = Color3.FromRGB(0,0,255)
+            SheriffHighlight.Parent = SearchFor("Gun").Character
         end
     else 
         if SheriffHighlight then
