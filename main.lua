@@ -31,7 +31,7 @@ local function SearchFor(Weapon)
     end
 end
 
-local MurderEspToggle = Tabs.Main:AddToggle( "Murderer ESP" , { Title = "Murderer ESP" , Default = getgenv().MurderEsp })
+local MurderEspToggle = Tabs.Main:AddToggle( "Murderer ESP" , { Title = "Murderer ESP" , Default = false })
 
 MurderEspToggle:OnChanged(function(NewVal)
     if NewVal then
@@ -45,12 +45,14 @@ MurderEspToggle:OnChanged(function(NewVal)
     end
 end)
 
-local SheriffEspToggle = Tabs.Main:AddToggle( "Sheriff ESP" , { Title = "Sheriff ESP" , Default = getgenv().MurderEsp })
+local SheriffEspToggle = Tabs.Main:AddToggle( "Sheriff ESP" , { Title = "Sheriff ESP" , Default = false })
 
 SheriffEspToggle:OnChanged(function(NewVal)
     if NewVal then
         if SearchFor("Gun") then
-            SheriffHighlight = Instance.new("Highlight", SearchFor("Gun").Character)
+            SheriffHighlight = Instance.new("Highlight")
+            SheriffHighlight.FillColor = Color3.FromRGC(0,0,255)
+            SheriffHighlight.Parent = SearchFor("Gun")
         end
     else 
         if SheriffHighlight then
