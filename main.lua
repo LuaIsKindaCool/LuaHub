@@ -4,6 +4,7 @@ local Player = Players.LocalPlayer
 local Character = Player.Character or Player.CharacterAdded:Wait()
 
 local MurdererHighlight
+local SheriffHighlight
 
 local Window = Fluent:CreateWindow({
     Title = "LuaHub",
@@ -19,11 +20,11 @@ local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "" }),
 }
 
-local function SearchForMurderer()
+local function SearchFor(Weapon)
     for _,EnemyPlayer in pairs(Players:GetPlayers()) do 
         if EnemyPlayer == Player then continue end
         if EnemyPlayer.Character and EnemyPlayer.Character.Humanoid and EnemyPlayer.Character.Humanoid.Health > 0 then
-            if EnemyPlayer.Backpack:FindFirstChild("Knife") or EnemyPlayer.Character:FindFirstChild("Knife") then
+            if EnemyPlayer.Backpack:FindFirstChild(Weapon) or EnemyPlayer.Character:FindFirstChild(Weapon) then
                 return EnemyPlayer
             end
         end
@@ -34,12 +35,26 @@ local MurderEspToggle = Tabs.Main:AddToggle( "Murderer ESP" , { Title = "Murdere
 
 MurderEspToggle:OnChanged(function(NewVal)
     if NewVal then
-        if SearchForMurderer() then
-            MurdererHighlight = Instance.new("Highlight", SearchForMurderer().Character)
+        if SearchFor("Knife") then
+            MurdererHighlight = Instance.new("Highlight", SearchFor("Knife").Character)
         end
     else 
         if MurdererHighlight then
             MurdererHighlight:Destroy()
+        end
+    end
+end)
+
+local SheriffEspToggle = Tabs.Main:AddToggle( "Sheriff ESP" , { Title = "Sheriff ESP" , Default = getgenv().MurderEsp })
+
+SheriffEspToggle:OnChanged(function(NewVal)
+    if NewVal then
+        if SearchFor("Gun") then
+            SheriffHighlight = Instance.new("Highlight", SearchFor("Gun").Character)
+        end
+    else 
+        if SheriffHighlight then
+            SheriffHighlight:Destroy()
         end
     end
 end)
