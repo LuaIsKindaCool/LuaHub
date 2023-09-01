@@ -30,13 +30,7 @@ local function SearchForMurderer()
     end
 end
 
-local MurderEspToggle = Tabs.Main:AddToggle({
-    "Murderer ESP",
-    {
-        Title = "Murderer ESP",
-        Default = getgenv().MurderEsp
-    }
-})
+local MurderEspToggle = Tabs.Main:AddToggle( "Murderer ESP" , { Title = "Murderer ESP" , Default = getgenv().MurderEsp })
 
 MurderEspToggle:OnChanged(function(NewVal)
     if NewVal then
