@@ -1,4 +1,4 @@
-local Fluent = local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local Players = game:GetService("Players")
 local Player = Player.LocalPlayer
 local Character = Player.Character or Player.CharacterAdded:Wait()
