@@ -40,5 +40,3 @@ local function SearchForMurderer()
         end
     end
 end
-
-Window:addButton
