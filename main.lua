@@ -1,6 +1,6 @@
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local Players = game:GetService("Players")
-local Player = Player.LocalPlayer
+local Player = Players.LocalPlayer
 local Character = Player.Character or Player.CharacterAdded:Wait()
 
 
@@ -17,15 +17,6 @@ local Window = Fluent:CreateWindow({
 local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "" }),
 }
-Tabs.Main:AddButton({
-    Title = "Locate Murderer",
-    Description = "Highlight the murderer",
-    Callback = function()
-        if SearchForMurderer() then
-            Instance.new("Highlight", SearchForMurderer().Character)
-        end
-    end
-})
 
 getgenv().MurderEsp = false
 getgenv().SheriffEsp = false
@@ -40,3 +31,13 @@ local function SearchForMurderer()
         end
     end
 end
+
+Tabs.Main:AddButton({
+    Title = "Locate Murderer",
+    Description = "Highlight the murderer",
+    Callback = function()
+        if SearchForMurderer() then
+            Instance.new("Highlight", SearchForMurderer().Character)
+        end
+    end
+})
